@@ -14,18 +14,19 @@
             <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Platform')" class="grid">
                     <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+                    <flux:navlist.item icon="cpu-chip" :href="route('nodes.index')" :current="request()->routeIs('nodes.index')" wire:navigate>{{ __('Nodes') }}</flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
 
             <flux:spacer />
 
             <flux:navlist variant="outline">
-                <flux:navlist.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">
+                <flux:navlist.item icon="folder-git-2" href="https://github.com/laraveltoiot/open-iot-cloud-laravel" target="_blank">
                 {{ __('Repository') }}
                 </flux:navlist.item>
 
-                <flux:navlist.item icon="book-open-text" href="https://laravel.com/docs/starter-kits" target="_blank">
-                {{ __('Documentation') }}
+                <flux:navlist.item icon="book-open-text" href="http://open-iot-cloud-laravel.test/docs" target="_blank">
+                {{ __('API Documentation') }}
                 </flux:navlist.item>
             </flux:navlist>
 
