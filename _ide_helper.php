@@ -23710,6 +23710,196 @@ namespace Illuminate\Testing {
             }
     }
 
+namespace App\Livewire\Settings {
+    /**
+     * 
+     *
+     */
+    class Profile {
+        /**
+         * 
+         *
+         * @see \Flux\FluxManager::bootModal()
+         * @param mixed $name
+         * @static 
+         */
+        public static function modal($name)
+        {
+            return \App\Livewire\Settings\Profile::modal($name);
+        }
+
+            }
+    /**
+     * 
+     *
+     */
+    class Password {
+        /**
+         * 
+         *
+         * @see \Flux\FluxManager::bootModal()
+         * @param mixed $name
+         * @static 
+         */
+        public static function modal($name)
+        {
+            return \App\Livewire\Settings\Password::modal($name);
+        }
+
+            }
+    /**
+     * 
+     *
+     */
+    class Appearance {
+        /**
+         * 
+         *
+         * @see \Flux\FluxManager::bootModal()
+         * @param mixed $name
+         * @static 
+         */
+        public static function modal($name)
+        {
+            return \App\Livewire\Settings\Appearance::modal($name);
+        }
+
+            }
+    }
+
+namespace App\Livewire\TokenManagement {
+    /**
+     * 
+     *
+     * @property-read array $abilities
+     */
+    class ApiTokenManager {
+        /**
+         * 
+         *
+         * @see \Flux\FluxManager::bootModal()
+         * @param mixed $name
+         * @static 
+         */
+        public static function modal($name)
+        {
+            return \App\Livewire\TokenManagement\ApiTokenManager::modal($name);
+        }
+
+            }
+    }
+
+namespace App\Livewire\Auth {
+    /**
+     * 
+     *
+     */
+    class Login {
+        /**
+         * 
+         *
+         * @see \Flux\FluxManager::bootModal()
+         * @param mixed $name
+         * @static 
+         */
+        public static function modal($name)
+        {
+            return \App\Livewire\Auth\Login::modal($name);
+        }
+
+            }
+    /**
+     * 
+     *
+     */
+    class Register {
+        /**
+         * 
+         *
+         * @see \Flux\FluxManager::bootModal()
+         * @param mixed $name
+         * @static 
+         */
+        public static function modal($name)
+        {
+            return \App\Livewire\Auth\Register::modal($name);
+        }
+
+            }
+    /**
+     * 
+     *
+     */
+    class ForgotPassword {
+        /**
+         * 
+         *
+         * @see \Flux\FluxManager::bootModal()
+         * @param mixed $name
+         * @static 
+         */
+        public static function modal($name)
+        {
+            return \App\Livewire\Auth\ForgotPassword::modal($name);
+        }
+
+            }
+    /**
+     * 
+     *
+     */
+    class ResetPassword {
+        /**
+         * 
+         *
+         * @see \Flux\FluxManager::bootModal()
+         * @param mixed $name
+         * @static 
+         */
+        public static function modal($name)
+        {
+            return \App\Livewire\Auth\ResetPassword::modal($name);
+        }
+
+            }
+    /**
+     * 
+     *
+     */
+    class VerifyEmail {
+        /**
+         * 
+         *
+         * @see \Flux\FluxManager::bootModal()
+         * @param mixed $name
+         * @static 
+         */
+        public static function modal($name)
+        {
+            return \App\Livewire\Auth\VerifyEmail::modal($name);
+        }
+
+            }
+    /**
+     * 
+     *
+     */
+    class ConfirmPassword {
+        /**
+         * 
+         *
+         * @see \Flux\FluxManager::bootModal()
+         * @param mixed $name
+         * @static 
+         */
+        public static function modal($name)
+        {
+            return \App\Livewire\Auth\ConfirmPassword::modal($name);
+        }
+
+            }
+    }
+
 
 namespace  {
     class App extends \Illuminate\Support\Facades\App {}

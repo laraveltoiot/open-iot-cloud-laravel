@@ -9,6 +9,11 @@ final class NodeController extends Controller
 {
     public function index()
     {
+        if (! request()->user()?->tokenCan('read')) {
+            return response()->json([
+                'message' => 'Unauthorized - Missing permission: read',
+            ], 403);
+        }
         $nodes = Node::with('users')->get();
 
         return (request()->wantsJson() || request()->is('api/*'))

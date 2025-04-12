@@ -14,13 +14,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         return $request->user();
     });
 
-    Route::get('/nodes', function (Request $request) {
-        if (! $request->user()?->tokenCan('read')) {
-            return response()->json(['message' => 'Unauthorized - Missing permission: read'], 403);
-        }
-
-        return app(NodeController::class)->index();
-    });
+    Route::middleware('auth:sanctum')->get('/nodes', [NodeController::class, 'index']);
 });
 
 // Route::get('/debug-token', function (Request $request) {

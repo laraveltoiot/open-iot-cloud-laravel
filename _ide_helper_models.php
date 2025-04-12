@@ -38,7 +38,7 @@ namespace App\Models{
  * @mixin \Eloquent
  */
 	#[\AllowDynamicProperties]
-	class IdeHelperNode {}
+	final class IdeHelperNode {}
 }
 
 namespace App\Models{
@@ -102,6 +102,6 @@ namespace App\Models{
  * @mixin \Eloquent
  */
 	#[\AllowDynamicProperties]
-	class IdeHelperUserNodeMapping {}
+	final class IdeHelperUserNodeMapping {}
 }
 
