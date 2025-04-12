@@ -10,16 +10,19 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "ext-pdo": "*",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
-        "livewire/flux": "^2.1.1",
-        "livewire/volt": "^1.7.0",
-        "ext-pdo": "*"
+        "livewire/flux": "^2.1",
+        "livewire/flux-pro": "^2.1",
+        "livewire/volt": "^1.7.0"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^3.5",
         "fakerphp/faker": "^1.23",
+        "larastan/larastan": "^3.0",
         "laravel/pail": "^1.2.2",
-        "laravel/pint": "^1.18",
+        "laravel/pint": "^1.22",
         "laravel/sail": "^1.41",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
@@ -57,6 +60,24 @@
         "dev": [
             "Composer\\Config::disableProcessTimeout",
             "npx concurrently -c \"#93c5fd,#c4b5fd,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"npm run dev\" --names='server,queue,vite'"
+        ],
+        "ide": [
+            "@php artisan ide-helper:models -M"
+        ],
+        "fix": [
+            "pint"
+        ],
+        "stan": [
+            "composer ide",
+            "phpstan analyse --memory-limit=250M"
+        ],
+        "pest": [
+            "pest --compact --profile"
+        ],
+        "check": [
+            "composer fix",
+            "composer stan",
+            "composer pest"
         ]
     },
     "extra": {
@@ -74,5 +95,11 @@
         }
     },
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": {
+        "flux-pro": {
+            "type": "composer",
+            "url": "https://composer.fluxui.dev"
+        }
+    }
 }
