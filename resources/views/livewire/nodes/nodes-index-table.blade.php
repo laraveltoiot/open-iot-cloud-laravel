@@ -13,7 +13,7 @@
             <flux:table.column sortable :sorted="$sortBy === 'type'" :direction="$sortDirection" wire:click="sort('type')">Type</flux:table.column>
             <flux:table.column sortable :sorted="$sortBy === 'fw_version'" :direction="$sortDirection" wire:click="sort('fw_version')">FW Version</flux:table.column>
             <flux:table.column sortable :sorted="$sortBy === 'created_at'" :direction="$sortDirection" wire:click="sort('created_at')">Created</flux:table.column>
-            <flux:table.column></flux:table.column> {{-- Actions --}}
+            <flux:table.column>Actions</flux:table.column>
         </flux:table.columns>
 
         <flux:table.rows>
@@ -24,8 +24,18 @@
                     <flux:table.cell>{{ $node->fw_version }}</flux:table.cell>
                     <flux:table.cell class="whitespace-nowrap">{{ $node->created_at->format('Y-m-d') }}</flux:table.cell>
                     <flux:table.cell>
-                        <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal" inset="top bottom" />
+                        <flux:dropdown position="bottom" align="end">
+                            <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal" inset="top bottom" />
+
+                            <flux:menu>
+                                <flux:menu.item icon="eye">View</flux:menu.item>
+                                <flux:menu.item icon="pencil">Edit</flux:menu.item>
+                                <flux:menu.item icon="trash" variant="danger">Delete</flux:menu.item>
+                            </flux:menu>
+                        </flux:dropdown>
                     </flux:table.cell>
+
+
                 </flux:table.row>
             @endforeach
         </flux:table.rows>
