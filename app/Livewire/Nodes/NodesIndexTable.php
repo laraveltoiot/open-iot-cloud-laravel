@@ -11,8 +11,8 @@ use Livewire\WithPagination;
 
 final class NodesIndexTable extends Component
 {
-    use WithPagination;
     use HighlightSearch;
+    use WithPagination;
 
     public string $sortBy = 'name';
 
