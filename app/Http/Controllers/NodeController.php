@@ -9,11 +9,14 @@ final class NodeController extends Controller
 {
     public function index()
     {
-        if (! request()->user()?->tokenCan('read')) {
-            return response()->json([
-                'message' => 'Unauthorized - Missing permission: read',
-            ], 403);
+        if (request()->is('api/*') && auth('sanctum')->check()) {
+            if (! auth('sanctum')->user()?->tokenCan('read')) {
+                return response()->json([
+                    'message' => 'Unauthorized - Missing permission: read',
+                ], 403);
+            }
         }
+
         $nodes = Node::with('users')->get();
 
         return (request()->wantsJson() || request()->is('api/*'))
