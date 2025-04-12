@@ -1,6 +1,7 @@
 <?php declare(strict_types=1);
 
 namespace App\Livewire\TokenManagement;
+
 use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\PersonalAccessToken;
 use Livewire\Component;

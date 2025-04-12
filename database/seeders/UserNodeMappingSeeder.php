@@ -1,15 +1,14 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Database\Seeders;
 
 use App\Models\Node;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Str;
 
-class UserNodeMappingSeeder extends Seeder
+final class UserNodeMappingSeeder extends Seeder
 {
     /**
      * Run the database seeds.
