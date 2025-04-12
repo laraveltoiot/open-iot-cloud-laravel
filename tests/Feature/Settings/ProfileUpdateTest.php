@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 use App\Livewire\Settings\Profile;
 use App\Models\User;

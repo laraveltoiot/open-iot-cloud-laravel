@@ -1,8 +1,9 @@
-<?php
+<?php declare(strict_types=1);
 
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
+use App\Livewire\TokenManagement\ApiTokenManager;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,6 +20,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('settings/profile', Profile::class)->name('settings.profile');
     Route::get('settings/password', Password::class)->name('settings.password');
     Route::get('settings/appearance', Appearance::class)->name('settings.appearance');
+    Route::get('settings/api-tokens', ApiTokenManager::class)->name('settings.api-tokens');
 });
 
 require __DIR__.'/auth.php';

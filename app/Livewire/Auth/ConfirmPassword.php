@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Livewire\Auth;
 
@@ -8,7 +8,7 @@ use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 #[Layout('components.layouts.auth')]
-class ConfirmPassword extends Component
+final class ConfirmPassword extends Component
 {
     public string $password = '';
 

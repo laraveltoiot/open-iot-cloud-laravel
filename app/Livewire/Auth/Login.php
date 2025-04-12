@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Livewire\Auth;
 
@@ -13,7 +13,7 @@ use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 #[Layout('components.layouts.auth')]
-class Login extends Component
+final class Login extends Component
 {
     #[Validate('required|string|email')]
     public string $email = '';
@@ -22,29 +22,6 @@ class Login extends Component
     public string $password = '';
 
     public bool $remember = false;
-
-    /**
-     * Handle an incoming authentication request.
-     */
-    public function login(): void
-    {
-        $this->validate();
-
-        $this->ensureIsNotRateLimited();
-
-        if (! Auth::attempt(['email' => $this->email, 'password' => $this->password], $this->remember)) {
-            RateLimiter::hit($this->throttleKey());
-
-            throw ValidationException::withMessages([
-                'email' => __('auth.failed'),
-            ]);
-        }
-
-        RateLimiter::clear($this->throttleKey());
-        Session::regenerate();
-
-        $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
-    }
 
     /**
      * Ensure the authentication request is not rate limited.
@@ -73,5 +50,28 @@ class Login extends Component
     protected function throttleKey(): string
     {
         return Str::transliterate(Str::lower($this->email).'|'.request()->ip());
+    }
+
+    /**
+     * Handle an incoming authentication request.
+     */
+    public function login(): void
+    {
+        $this->validate();
+
+        $this->ensureIsNotRateLimited();
+
+        if (! Auth::attempt(['email' => $this->email, 'password' => $this->password], $this->remember)) {
+            RateLimiter::hit($this->throttleKey());
+
+            throw ValidationException::withMessages([
+                'email' => __('auth.failed'),
+            ]);
+        }
+
+        RateLimiter::clear($this->throttleKey());
+        Session::regenerate();
+
+        $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
     }
 }
