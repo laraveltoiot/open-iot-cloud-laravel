@@ -60,4 +60,11 @@ final class User extends Authenticatable
             ->map(fn (string $name) => Str::of($name)->substr(0, 1))
             ->implode('');
     }
+
+    public function nodes()
+    {
+        return $this->belongsToMany(Node::class, 'user_node_mappings', 'user_id', 'node_id')
+            ->withTimestamps()
+            ->using(UserNodeMapping::class);
+    }
 }
