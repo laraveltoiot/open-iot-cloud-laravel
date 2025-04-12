@@ -12,6 +12,7 @@
         "php": "^8.2",
         "ext-pdo": "*",
         "laravel/framework": "^12.0",
+        "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.10.1",
         "livewire/flux": "^2.1",
         "livewire/flux-pro": "^2.1",
