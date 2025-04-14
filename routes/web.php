@@ -24,6 +24,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('settings/api-tokens', ApiTokenManager::class)->name('settings.api-tokens');
 
     Route::get('/nodes', [NodeController::class, 'index'])->name('nodes.index');
+    Route::get('/create-node', [NodeController::class, 'create'])->name('nodes.create');
 });
 
 require __DIR__.'/auth.php';

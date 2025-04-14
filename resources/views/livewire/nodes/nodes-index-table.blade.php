@@ -1,5 +1,11 @@
 <div>
     <flux:heading size="xl">Nodes</flux:heading>
+    <div class="flex justify-end mb-4">
+        <flux:link class="text-[red]" href="{{ route('nodes.create') }}">
+            Add Node
+        </flux:link>
+    </div>
+
     <flux:text class="mt-2">Nodes represent individual IoT devices registered in the system. Each node includes metadata such as type,
         firmware version, and registration date.</flux:text>
 

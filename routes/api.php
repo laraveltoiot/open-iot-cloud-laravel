@@ -14,7 +14,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
         return $request->user();
     });
 
-    Route::middleware('auth:sanctum')->get('/nodes', [NodeController::class, 'index']);
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::get('/nodes', [NodeController::class, 'index']);
+        Route::post('/create-node', [NodeController::class, 'store']);
+    });
 });
 
 // Route::get('/debug-token', function (Request $request) {

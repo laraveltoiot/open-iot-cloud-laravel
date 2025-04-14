@@ -46,7 +46,7 @@ final class NodesIndexTable extends Component
                 });
             })
             ->orderBy($this->sortBy, $this->sortDirection)
-            ->paginate(10);
+            ->paginate(50);
     }
 
     public function render()
