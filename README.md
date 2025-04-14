@@ -1,6 +1,7 @@
 # Laravel Application
 
-This is a project built using [Laravel](https://laravel.com/), a modern PHP framework designed for building scalable and efficient web applications.
+This is a project built using [Laravel](https://laravel.com/), a modern PHP framework designed for building scalable and
+efficient web applications.
 
 ---
 
@@ -41,21 +42,19 @@ Follow these steps to set up the project:
    ```
 
 5. Generate the application key:
-   ```bash
-   php artisan key:generate
-   ```
+       ```bash
+       php artisan key:generate
+       ```
 
-6. Configure the database (SQLite is the default database):
+6. NPM build:
 
-    - Create the database file:
-      ```bash
-      touch database/database.sqlite
-      ```
-
-    - Ensure `DB_CONNECTION=sqlite` and the correct database path are set in your `.env` file.
+    ```bash
+            npm build
+       ```
 
 7. Run database migrations and (if needed) seed the database:
    ```bash
+   php artisan migrate
    php artisan migrate --seed
    ```
 
@@ -88,9 +87,11 @@ Follow these steps to set up the project:
 
 ## Features
 
-- **Laravel Framework (v12.8.1):** Provides complete features like authentication, routing, database migrations, and more.
+- **Laravel Framework (v12.8.1):** Provides complete features like authentication, routing, database migrations, and
+  more.
 - **SQLite Database:** A fast and simple database choice for development and testing.
 - **Vite + TailwindCSS:** Enables modern and highly customizable frontend development.
 - **Docker with Laravel Sail:** Optional containerized setup for running the application.
 - **Database-based Queue System:** Enables asynchronous processing of tasks.
+
 ---

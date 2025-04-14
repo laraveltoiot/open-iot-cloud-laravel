@@ -20,7 +20,6 @@ final class CreateNodeForm extends Component
 
     public string $fw_version;
 
-
     public function save(): void
     {
         $validated = $this->validate();
