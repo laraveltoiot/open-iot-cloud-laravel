@@ -4,6 +4,7 @@ namespace App\Livewire\Nodes;
 
 use App\Livewire\Traits\HighlightSearch;
 use App\Models\Node;
+use Flux;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
@@ -19,6 +20,29 @@ final class NodesIndexTable extends Component
     public string $sortDirection = 'asc';
 
     public string $search = '';
+
+    public ?int $deleteNodeId = null;
+
+    public function confirmDelete(int $id): void
+    {
+        $this->deleteNodeId = $id;
+    }
+
+    public function deleteNode(): void
+    {
+        $node = Node::find($this->deleteNodeId);
+
+        if ($node) {
+            $node->delete();
+            session()->flash('success', 'Node has been deleted successfully.');
+            $this->resetPage();
+        } else {
+            session()->flash('error', 'Node was not found.');
+        }
+
+        $this->deleteNodeId = null;
+        Flux::modals()->close();
+    }
 
     public function updatingSearch(): void
     {

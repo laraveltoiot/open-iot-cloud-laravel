@@ -1,4 +1,29 @@
 <div>
+    <flux:modal name="delete-node-modal" class="min-w-[22rem]">
+        <div class="space-y-6">
+            <div>
+                <flux:heading size="lg">Delete node?</flux:heading>
+
+                <flux:text class="mt-2">
+                    <p>You're about to delete this node.</p>
+                    <p>This action cannot be reversed.</p>
+                </flux:text>
+            </div>
+
+            <div class="flex gap-2">
+                <flux:spacer />
+
+                <flux:modal.close>
+                    <flux:button variant="ghost">Cancel</flux:button>
+                </flux:modal.close>
+
+                <form wire:submit.prevent="deleteNode">
+                    <flux:button type="submit" variant="danger">Delete node</flux:button>
+                </form>
+            </div>
+        </div>
+    </flux:modal>
+
     <flux:heading size="xl">Nodes</flux:heading>
     <div class="flex justify-end mb-4">
         <flux:link class="text-[red]" href="{{ route('nodes.create') }}">
@@ -34,9 +59,16 @@
                             <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal" inset="top bottom" />
 
                             <flux:menu>
-                                <flux:menu.item icon="eye">View</flux:menu.item>
-                                <flux:menu.item icon="pencil">Edit</flux:menu.item>
-                                <flux:menu.item icon="trash" variant="danger">Delete</flux:menu.item>
+                                <flux:menu.item href="{{ route('nodes.show', $node->id) }}" icon="eye">View</flux:menu.item>
+                                <flux:menu.item href="{{ route('nodes.edit', $node->id) }}" icon="pencil">Edit</flux:menu.item>
+                                <flux:menu.item
+                                    icon="trash"
+                                    variant="danger"
+                                    wire:click="confirmDelete({{ $node->id }})"
+                                >
+                                    <flux:modal.trigger name="delete-node-modal">Delete</flux:modal.trigger>
+                                </flux:menu.item>
+
                             </flux:menu>
                         </flux:dropdown>
                     </flux:table.cell>
