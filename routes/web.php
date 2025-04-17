@@ -25,7 +25,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/nodes', [NodeController::class, 'index'])->name('nodes.index');
     Route::get('/create-node', [NodeController::class, 'create'])->name('nodes.create');
-    Route::get('/nodes/{id}/edit', [NodeController::class, 'edit'])->name('nodes.edit');
+    Route::get('/nodes/{node}/edit', [NodeController::class, 'edit'])->name('nodes.edit');
     Route::get('/nodes/{id}', [NodeController::class, 'show'])->name('nodes.show');
 
 
