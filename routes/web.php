@@ -28,7 +28,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/nodes/{node}/edit', [NodeController::class, 'edit'])->name('nodes.edit');
     Route::get('/nodes/{id}', [NodeController::class, 'show'])->name('nodes.show');
 
-
 });
 
 require __DIR__.'/auth.php';

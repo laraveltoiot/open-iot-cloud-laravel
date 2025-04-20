@@ -3,9 +3,6 @@
 namespace App\Livewire\Nodes;
 
 use App\Models\Node;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Application;
 use Livewire\Component;
 
 final class ShowNode extends Component
@@ -13,8 +10,11 @@ final class ShowNode extends Component
     public $nodeId;
 
     public $name;
+
     public $type;
+
     public $fw_version;
+
     public $node_uuid;
 
     public function mount($nodeId): void
@@ -28,8 +28,7 @@ final class ShowNode extends Component
         $this->node_uuid = $node->node_uuid;
     }
 
-
-    public function render(): View|Application|Factory|\Illuminate\View\View
+    public function render()
     {
         return view('livewire.nodes.show-node');
     }

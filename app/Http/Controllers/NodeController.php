@@ -11,6 +11,7 @@ use Str;
 final class NodeController extends Controller
 {
     use ApiHelpers;
+
     public function index()
     {
         $this->checkPermission('read');
