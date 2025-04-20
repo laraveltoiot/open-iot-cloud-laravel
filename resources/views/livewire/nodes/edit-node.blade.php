@@ -16,6 +16,22 @@
         <div>
             <flux:input label="Firmware Version" wire:model.defer="fw_version" />
         </div>
+        <div>
+            <flux:select
+                wire:model.defer="targetUserIds"
+                variant="listbox"
+                searchable
+                multiple
+                placeholder="Select user to assign"
+            >
+                @foreach ($users as $user)
+                    <flux:select.option value="{{ $user->id }}">
+                        {{ $user->name }} ({{ $user->email }})
+                    </flux:select.option>
+                @endforeach
+            </flux:select>
+        </div>
+
 
         <flux:button type="submit">
             Update Node
