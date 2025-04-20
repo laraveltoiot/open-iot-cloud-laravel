@@ -4,24 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\NodeResource;
 use App\Models\Node;
+use App\Traits\ApiHelpers;
 use Illuminate\Http\Request;
 use Str;
 
 final class NodeController extends Controller
 {
+    use ApiHelpers;
     public function index()
     {
-        if (request()->is('api/*') && auth('sanctum')->check()) {
-            if (! auth('sanctum')->user()?->tokenCan('read')) {
-                return response()->json([
-                    'message' => 'Unauthorized - Missing permission: read',
-                ], 403);
-            }
-        }
+        $this->checkPermission('read');
 
         $nodes = Node::with('users')->get();
 
-        return (request()->wantsJson() || request()->is('api/*'))
+        return $this->isApiRequest()
             ? NodeResource::collection($nodes)
             : view('nodes.index', compact('nodes'));
     }
@@ -34,14 +30,10 @@ final class NodeController extends Controller
     public function edit($id)
     {
         $node = Node::with('users')->where('id', $id)->orWhere('node_uuid', $id)->firstOrFail();
-        if (request()->is('api/*') && auth('sanctum')->check()) {
-            if (! auth('sanctum')->user()?->tokenCan('update')) {
-                return response()->json([
-                    'message' => 'Unauthorized - Missing permission: update',
-                ], 403);
-            }
-        }
-        if (request()->wantsJson() || request()->is('api/*')) {
+
+        $this->checkPermission('update');
+
+        if ($this->isApiRequest()) {
             return response()->json([
                 'node' => new NodeResource($node),
             ]);
@@ -53,6 +45,7 @@ final class NodeController extends Controller
     public function update(Request $request, $id)
     {
         $node = Node::findOrFail($id);
+
         $validated = $request->validate([
             'name' => 'sometimes|string|max:255',
             'type' => 'sometimes|string|max:50',
@@ -67,13 +60,7 @@ final class NodeController extends Controller
 
     public function store(Request $request)
     {
-        if ($request->is('api/*') && auth('sanctum')->check()) {
-            if (! auth('sanctum')->user()?->tokenCan('create')) {
-                return response()->json([
-                    'message' => 'Unauthorized - Missing permission: write',
-                ], 403);
-            }
-        }
+        $this->checkPermission('create');
 
         $validated = $request->validate([
             'name' => 'required|string|max:255',
@@ -97,16 +84,24 @@ final class NodeController extends Controller
     public function show($id)
     {
         $node = Node::with('users')->where('id', $id)->orWhere('node_uuid', $id)->firstOrFail();
-        if (request()->is('api/*') && auth('sanctum')->check()) {
-            if (! auth('sanctum')->user()?->tokenCan('read')) {
-                return response()->json([
-                    'message' => 'Unauthorized - Missing permission: read',
-                ], 403);
-            }
-        }
 
-        return (request()->wantsJson() || request()->is('api/*'))
+        $this->checkPermission('read');
+
+        return $this->isApiRequest()
             ? new NodeResource($node)
             : view('nodes.show', compact('node'));
+    }
+
+    public function destroy($id)
+    {
+        $node = Node::where('id', $id)->orWhere('node_uuid', $id)->firstOrFail();
+
+        $this->checkPermission('delete');
+
+        $node->delete();
+
+        return response()->json([
+            'message' => 'The node was successfully deleted.',
+        ]);
     }
 }

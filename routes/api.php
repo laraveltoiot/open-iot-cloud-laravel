@@ -18,8 +18,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/nodes', [NodeController::class, 'index']);
         Route::post('/create-node', [NodeController::class, 'store']);
         Route::get('/nodes/{id}', [NodeController::class, 'show']);
-        Route::get('/nodes/{id}/edit', [NodeController::class, 'edit']);
+        Route::get('/nodes/{id}', [NodeController::class, 'edit']);
         Route::patch('/nodes/{id}', [NodeController::class, 'update']);
+        Route::delete('/nodes/{id}', [NodeController::class, 'destroy']);
 
     });
 });
