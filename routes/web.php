@@ -30,4 +30,13 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
+Route::get('/mqtt-test', function () {
+    $topic = 'test/topic';
+    $message = ['message' => 'Hello World from HTTP route!'];
+    $client = MQTT::connection('hivemq');
+    $client->publish($topic, json_encode($message), 1);
+
+    return response()->json($message);
+});
+
 require __DIR__.'/auth.php';
