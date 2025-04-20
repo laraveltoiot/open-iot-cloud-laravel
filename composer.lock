@@ -1240,16 +1240,16 @@
         },
         {
             "name": "knuckleswtf/scribe",
-            "version": "5.1.0",
+            "version": "5.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/knuckleswtf/scribe.git",
-                "reference": "1e846244476a0312b8a7731a779a4fea85a5bfa0"
+                "reference": "618908cac156fc90b0387cb9e14dfbd5a93c76cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/knuckleswtf/scribe/zipball/1e846244476a0312b8a7731a779a4fea85a5bfa0",
-                "reference": "1e846244476a0312b8a7731a779a4fea85a5bfa0",
+                "url": "https://api.github.com/repos/knuckleswtf/scribe/zipball/618908cac156fc90b0387cb9e14dfbd5a93c76cc",
+                "reference": "618908cac156fc90b0387cb9e14dfbd5a93c76cc",
                 "shasum": ""
             },
             "require": {
@@ -1322,7 +1322,7 @@
             ],
             "support": {
                 "issues": "https://github.com/knuckleswtf/scribe/issues",
-                "source": "https://github.com/knuckleswtf/scribe/tree/5.1.0"
+                "source": "https://github.com/knuckleswtf/scribe/tree/5.2.0"
             },
             "funding": [
                 {
@@ -1330,7 +1330,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2025-02-25T09:09:08+00:00"
+            "time": "2025-04-17T21:36:45+00:00"
         },
         {
             "name": "laravel/framework",
@@ -1799,16 +1799,16 @@
         },
         {
             "name": "league/commonmark",
-            "version": "2.6.1",
+            "version": "2.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "d990688c91cedfb69753ffc2512727ec646df2ad"
+                "reference": "06c3b0bf2540338094575612f4a1778d0d2d5e94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/d990688c91cedfb69753ffc2512727ec646df2ad",
-                "reference": "d990688c91cedfb69753ffc2512727ec646df2ad",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/06c3b0bf2540338094575612f4a1778d0d2d5e94",
+                "reference": "06c3b0bf2540338094575612f4a1778d0d2d5e94",
                 "shasum": ""
             },
             "require": {
@@ -1902,7 +1902,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-12-29T14:10:59+00:00"
+            "time": "2025-04-18T21:09:27+00:00"
         },
         {
             "name": "league/config",
