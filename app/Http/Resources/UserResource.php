@@ -15,6 +15,11 @@ final class UserResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
+            'pivot' => [
+                'status' => $this->pivot->status ?? null,
+                'secret_key' => $this->pivot->secret_key ?? null,
+                'assigned_at' => optional($this->pivot->created_at)?->toDateTimeString(),
+            ],
         ];
     }
 }

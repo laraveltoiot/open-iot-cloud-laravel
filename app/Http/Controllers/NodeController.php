@@ -67,6 +67,8 @@ final class NodeController extends Controller
             'name' => 'required|string|max:255',
             'type' => 'nullable|string|max:255',
             'fw_version' => 'nullable|string|max:255',
+            'target_user_ids' => 'nullable|array',
+            'target_user_ids.*' => 'exists:users,id',
         ]);
 
         $node = Node::create([
@@ -75,6 +77,14 @@ final class NodeController extends Controller
             'type' => $validated['type'] ?? null,
             'fw_version' => $validated['fw_version'] ?? null,
         ]);
+        if (! empty($validated['target_user_ids'])) {
+            $node->users()->sync(collect($validated['target_user_ids'])->mapWithKeys(fn ($id) => [
+                $id => [
+                    'status' => 'confirmed',
+                    'secret_key' => Str::uuid(),
+                ],
+            ])->toArray());
+        }
 
         return response()->json([
             'message' => 'Node created successfully.',
@@ -84,7 +94,7 @@ final class NodeController extends Controller
 
     public function show($id)
     {
-        $node = Node::with('users')->where('id', $id)->orWhere('node_uuid', $id)->firstOrFail();
+        $node = Node::with('users')->findOrFail($id);
 
         $this->checkPermission('read');
 
