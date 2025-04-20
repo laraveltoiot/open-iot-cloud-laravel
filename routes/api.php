@@ -21,7 +21,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/nodes/{id}', [NodeController::class, 'edit']);
         Route::patch('/nodes/{id}', [NodeController::class, 'update']);
         Route::delete('/nodes/{id}', [NodeController::class, 'destroy']);
-
     });
 });
 

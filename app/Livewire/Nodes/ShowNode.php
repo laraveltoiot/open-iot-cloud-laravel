@@ -16,16 +16,28 @@ final class ShowNode extends Component
     public $fw_version;
 
     public $node_uuid;
+    public array $userMappings = [];
 
     public function mount($nodeId): void
     {
         $this->nodeId = $nodeId;
-        $node = Node::findOrFail($nodeId);
+
+        $node = Node::with('users')->findOrFail($nodeId);
 
         $this->name = $node->name;
         $this->type = $node->type;
         $this->fw_version = $node->fw_version;
         $this->node_uuid = $node->node_uuid;
+
+        $this->userMappings = $node->users->map(function ($user) {
+            return [
+                'name' => $user->name,
+                'email' => $user->email,
+                'status' => $user->pivot->status,
+                'secret_key' => $user->pivot->secret_key,
+                'assigned_at' => $user->pivot->created_at->format('Y-m-d H:i'),
+            ];
+        })->toArray();
     }
 
     public function render()

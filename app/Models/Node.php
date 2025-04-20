@@ -13,8 +13,8 @@ final class Node extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'user_node_mappings', 'node_id', 'user_id')
-            ->withTimestamps()
-            ->using(UserNodeMapping::class);
+        return $this->belongsToMany(User::class, 'user_node_mappings')
+            ->withPivot(['status', 'secret_key', 'created_at'])
+            ->withTimestamps();
     }
 }

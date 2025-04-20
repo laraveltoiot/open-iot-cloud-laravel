@@ -3,6 +3,8 @@
 namespace App\Livewire\Nodes;
 
 use App\Models\Node;
+use App\Models\User;
+use App\Models\UserNodeMapping;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
@@ -12,7 +14,11 @@ final class CreateNodeForm extends Component
         'name' => 'required|string|max:255',
         'type' => 'nullable|string|max:255',
         'fw_version' => 'nullable|string|max:255',
+        'targetUserIds' => 'required|array|min:1',
+        'targetUserIds.*' => 'exists:users,id',
     ];
+
+    public array $targetUserIds = [];
 
     public string $name;
 
@@ -24,12 +30,22 @@ final class CreateNodeForm extends Component
     {
         $validated = $this->validate();
 
-        Node::create([
+        $node = Node::create([
             'node_uuid' => Str::uuid(),
             'name' => $validated['name'],
             'type' => $validated['type'] ?? null,
             'fw_version' => $validated['fw_version'] ?? null,
         ]);
+
+        foreach ($validated['targetUserIds'] as $userId) {
+            UserNodeMapping::create([
+                'user_id' => $userId,
+                'node_id' => $node->id,
+                'secret_key' => Str::uuid(),
+                'status' => 'confirmed',
+            ]);
+        }
+
 
         session()->flash('success', 'Node created successfully!');
         $this->reset();
@@ -37,6 +53,8 @@ final class CreateNodeForm extends Component
 
     public function render()
     {
-        return view('livewire.nodes.create-node-form');
+        return view('livewire.nodes.create-node-form', [
+            'users' => User::all(),
+        ]);
     }
 }
