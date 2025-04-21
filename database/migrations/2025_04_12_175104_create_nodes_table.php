@@ -16,6 +16,8 @@ return new class extends Migration
             $table->uuid('node_uuid')->unique();
             $table->string('name');
             $table->string('type')->nullable();
+            $table->boolean('online')->default(false);
+            $table->timestamp('last_seen_at')->nullable();
             $table->string('fw_version')->nullable();
             $table->timestamps();
         });
