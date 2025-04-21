@@ -42,7 +42,7 @@ final class CreateNodeForm extends Component
                 'user_id' => $userId,
                 'node_id' => $node->id,
                 'secret_key' => Str::uuid(),
-                'status' => 'confirmed',
+                'status' => 'requested',
             ]);
         }
 
