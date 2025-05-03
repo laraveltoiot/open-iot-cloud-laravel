@@ -25,13 +25,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/nodes/{id}', [NodeController::class, 'edit']);
     Route::patch('/nodes/{id}', [NodeController::class, 'update']);
     Route::delete('/nodes/{id}', [NodeController::class, 'destroy']);
-
-
     Route::apiResource('webhooks', WebhookController::class);
-
 });
 
 Route::post('/iot/heartbeat', [HeartbeatController::class, 'store']);
+
 Route::post('/iot/pairing', [PairingController::class, 'store']);
 
 Route::post('/webhook/test', function (Request $request) {
