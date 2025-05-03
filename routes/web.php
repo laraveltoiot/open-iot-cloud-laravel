@@ -28,6 +28,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/nodes/{node}/edit', [NodeController::class, 'edit'])->name('nodes.edit');
     Route::get('/nodes/{id}', [NodeController::class, 'show'])->name('nodes.show');
 
+
+    Route::view('/webhooks-ui', 'webhooks.index')->name('webhooks.ui');
+
 });
 
 Route::get('/mqtt-test', function () {

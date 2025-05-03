@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'mqtt_microservice' => [
+        'base_uri' => env('MQTT_MICROSERVICE_URL', 'http://localhost:8080'),
+        'api_key' => env('MQTT_MICROSERVICE_API_KEY', null),
+    ],
+
 ];

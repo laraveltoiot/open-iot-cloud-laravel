@@ -15,6 +15,8 @@
                 <flux:navlist.group :heading="__('Platform')" class="grid">
                     <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
                     <flux:navlist.item icon="cpu-chip" :href="route('nodes.index')" :current="request()->routeIs('nodes.index')" wire:navigate>{{ __('Nodes') }}</flux:navlist.item>
+                    <flux:navlist.item icon="adjustments-vertical" :href="route('webhooks.ui')" :current="request()->routeIs('webhooks.ui')" wire:navigate>{{ __('Webhooks') }}</flux:navlist.item>
+
                 </flux:navlist.group>
             </flux:navlist>
 
