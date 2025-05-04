@@ -7,6 +7,7 @@ use App\Models\UserNodeMapping;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 final class PairingController extends Controller
 {
@@ -19,7 +20,12 @@ final class PairingController extends Controller
 
         $topicParts = explode('/', $validated['topic']);
 
-        if (count($topicParts) < 4 || $topicParts[0] !== 'node' || $topicParts[2] !== 'user' || $topicParts[3] !== 'mapping') {
+        if (
+            count($topicParts) < 4 ||
+            $topicParts[0] !== 'node' ||
+            $topicParts[2] !== 'user' ||
+            $topicParts[3] !== 'mapping'
+        ) {
             Log::warning('Pairing: Invalid topic format', ['topic' => $validated['topic']]);
 
             return response(['status' => 'error', 'message' => 'Invalid topic format'], 400);
@@ -46,11 +52,29 @@ final class PairingController extends Controller
             return response(['status' => 'error', 'message' => 'Mapping not found or already confirmed'], 404);
         }
 
+        // Mark as confirmed
         $mapping->status = 'confirmed';
         $mapping->save();
 
-        Log::info('Pairing successful', ['node_uuid' => $nodeUuid, 'user_id' => $mapping->user_id]);
+        // Generate MQTT credentials only if they don't already exist
+        if (! $node->mqtt_username) {
+            $node->mqtt_username = 'node-'.$node->node_uuid;
+            // or any random generation
+            $node->mqtt_password = Str::uuid()->toString();
+            $node->mqtt_broker = config('mqtt.default_broker_host', 'mqtt.my-cloud.com');
+            $node->mqtt_port = config('mqtt.default_broker_port', 8883);
 
-        return response(['status' => 'success', 'message' => 'Node paired successfully'], 200);
+            $node->save();
+        }
+
+        Log::info('Pairing successful', [
+            'node_uuid' => $nodeUuid,
+            'user_id' => $mapping->user_id,
+        ]);
+
+        return response([
+            'status' => 'success',
+            'message' => 'Node paired successfully',
+        ], 200);
     }
 }
