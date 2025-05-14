@@ -19,10 +19,15 @@ namespace App\Models{
  * @property string $node_uuid
  * @property string $name
  * @property string|null $type
+ * @property int $online
+ * @property string|null $last_seen_at
  * @property string|null $fw_version
+ * @property string|null $mqtt_username
+ * @property string|null $mqtt_password
+ * @property string|null $mqtt_broker
+ * @property int|null $mqtt_port
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\UserNodeMapping|null $pivot
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $users
  * @property-read int|null $users_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Node newModelQuery()
@@ -31,8 +36,14 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Node whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Node whereFwVersion($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Node whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Node whereLastSeenAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Node whereMqttBroker($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Node whereMqttPassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Node whereMqttPort($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Node whereMqttUsername($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Node whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Node whereNodeUuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Node whereOnline($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Node whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Node whereUpdatedAt($value)
  * @mixin \Eloquent

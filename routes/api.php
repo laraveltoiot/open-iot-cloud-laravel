@@ -44,8 +44,6 @@ Route::post('/webhook/test', function (Request $request) {
 
 Route::get('/devices/{node_uuid}/credentials', [DeviceProvisioningController::class, 'show']);
 
-
-
 // Route::get('/debug-token', function (Request $request) {
 //    return [
 //        'user' => $request->user(),

@@ -52,7 +52,7 @@ final class MqttStatusTrackerCommand extends Command
                     return;
                 }
 
-                $online = trim($message) === 'online';
+                $online = mb_trim($message) === 'online';
                 $node->online = $online;
                 $node->last_seen_at = now();
                 $node->save();

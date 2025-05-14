@@ -22,6 +22,7 @@ final class UpdateNodeStatusFromHeartbeat
 
         if (! $node) {
             Log::warning('Heartbeat received for unknown node UUID: '.$event->nodeUuid);
+
             return;
         }
 

@@ -16,6 +16,7 @@ final class ShowNode extends Component
     public $fw_version;
 
     public $node_uuid;
+
     public array $userMappings = [];
 
     public function mount($nodeId): void

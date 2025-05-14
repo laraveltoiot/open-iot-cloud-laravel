@@ -49,6 +49,8 @@ final class WebhooksManager extends Component
 
     /**
      * Initial mount: check health, load webhooks.
+     *
+     * @throws ConnectionException
      */
     public function mount(WebhookMicroservice $webhookService): void
     {
@@ -71,6 +73,8 @@ final class WebhooksManager extends Component
 
     /**
      * Refresh from microservice (manually or after create/update/delete).
+     *
+     * @throws ConnectionException
      */
     public function checkServiceAgain(WebhookMicroservice $webhookService): void
     {
@@ -110,6 +114,9 @@ final class WebhooksManager extends Component
         ];
     }
 
+    /**
+     * @throws ConnectionException
+     */
     public function storeWebhook(WebhookMicroservice $webhookService): void
     {
         if (empty($this->createForm['name']) || empty($this->createForm['url'])) {

@@ -46,7 +46,6 @@ final class CreateNodeForm extends Component
             ]);
         }
 
-
         session()->flash('success', 'Node created successfully!');
         $this->reset();
     }

@@ -15,7 +15,7 @@ final class WebhookMicroservice
 
     public function __construct()
     {
-        $this->baseUri = config('services.mqtt_microservice.base_uri', 'http://localhost:8080');
+        $this->baseUri = config('services.mqtt_microservice.base_uri');
         $this->apiKey = config('services.mqtt_microservice.api_key');
     }
 
