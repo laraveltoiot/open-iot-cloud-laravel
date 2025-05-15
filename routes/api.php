@@ -1,5 +1,6 @@
 <?php declare(strict_types=1);
 
+use App\Http\Controllers\DeviceBootstrapController;
 use App\Http\Controllers\DeviceProvisioningController;
 use App\Http\Controllers\HeartbeatController;
 use App\Http\Controllers\NodeController;
@@ -42,6 +43,10 @@ Route::post('/webhook/test', function (Request $request) {
     return response()->json(['status' => 'ok']);
 });
 
+// Zero-Touch Provisioning endpoint that combines pairing and credential retrieval
+Route::post('/devices/bootstrap', [DeviceBootstrapController::class, 'bootstrap']);
+
+// Legacy endpoints for backward compatibility
 Route::get('/devices/{node_uuid}/credentials', [DeviceProvisioningController::class, 'show']);
 
 // Route::get('/debug-token', function (Request $request) {

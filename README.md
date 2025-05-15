@@ -82,16 +82,3 @@ Follow these steps to set up the project:
    ```bash
    npm run build
    ```
-
----
-
-## Features
-
-- **Laravel Framework (v12.8.1):** Provides complete features like authentication, routing, database migrations, and
-  more.
-- **SQLite Database:** A fast and simple database choice for development and testing.
-- **Vite + TailwindCSS:** Enables modern and highly customizable frontend development.
-- **Docker with Laravel Sail:** Optional containerized setup for running the application.
-- **Database-based Queue System:** Enables asynchronous processing of tasks.
-
----
