@@ -45,14 +45,3 @@ Route::post('/webhook/test', function (Request $request) {
 
 // Zero-Touch Provisioning endpoint that combines pairing and credential retrieval
 Route::post('/devices/bootstrap', [DeviceBootstrapController::class, 'bootstrap']);
-
-// Legacy endpoints for backward compatibility
-Route::get('/devices/{node_uuid}/credentials', [DeviceProvisioningController::class, 'show']);
-
-// Route::get('/debug-token', function (Request $request) {
-//    return [
-//        'user' => $request->user(),
-//        'accessToken' => $request->user()?->currentAccessToken(),
-//        'abilities' => $request->user()?->currentAccessToken()?->abilities,
-//    ];
-// })->middleware('auth:sanctum');
