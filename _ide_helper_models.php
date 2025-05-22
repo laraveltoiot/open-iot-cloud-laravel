@@ -11,11 +11,11 @@
  */
 
 
-namespace App\Models{
+namespace App\Models{use Illuminate\Database\Eloquent\Collection;use Illuminate\Support\Carbon;
 /**
- * 
  *
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
+ *
+ * @property-read Collection|\App\Models\User[] $users
  * @property int $id
  * @property string $node_uuid
  * @property string $name
@@ -27,8 +27,8 @@ namespace App\Models{
  * @property string|null $mqtt_password
  * @property string|null $mqtt_broker
  * @property int|null $mqtt_port
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property-read int|null $users_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Node newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Node newQuery()
@@ -54,7 +54,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $name
@@ -91,7 +91,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property int $user_id

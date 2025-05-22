@@ -65,8 +65,8 @@ final class DeviceBootstrapController extends Controller
             if (! $node->mqtt_username) {
                 $node->mqtt_username = 'node-'.$node->node_uuid;
                 $node->mqtt_password = Str::uuid()->toString();
-                $node->mqtt_broker = config('mqtt.default_broker_host', 'mqtt.my-cloud.com');
-                $node->mqtt_port = config('mqtt.default_broker_port', 8883);
+                $node->mqtt_broker = config('mqtt-client.connections.hivemq.host');
+                $node->mqtt_port = config('mqtt-client.connections.hivemq.port');
                 $node->save();
 
                 Log::info('Bootstrap: MQTT credentials generated', ['node_uuid' => $nodeUuid]);
@@ -76,10 +76,12 @@ final class DeviceBootstrapController extends Controller
         // Return all necessary configuration in one response
         return response()->json([
             'status' => 'success',
-            'broker' => $node->mqtt_broker,
+            'broker' => config('mqtt-client.connections.hivemq.host'),
             'port' => $node->mqtt_port,
             'username' => $node->mqtt_username,
             'password' => $node->mqtt_password,
+            'auth_username' => config('mqtt-client.connections.hivemq.connection_settings.auth.username'),
+            'auth_password' => config('mqtt-client.connections.hivemq.connection_settings.auth.password'),
             'topics' => [
                 'config_publish' => "node/{$node->node_uuid}/config",
                 'params_init' => "node/{$node->node_uuid}/params/local/init",
