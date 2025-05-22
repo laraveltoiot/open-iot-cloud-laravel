@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
  * @mixin IdeHelperNode
  */
 final class Node extends Model

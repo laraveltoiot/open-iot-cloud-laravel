@@ -245,7 +245,7 @@ final class WebhooksManager extends Component
         $this->webhookIdBeingDeleted = null;
     }
 
-    public function render(): View|Factory|Application|\Illuminate\View\View
+    public function render(): View|Factory|\Illuminate\View\View
     {
         return view('livewire.Webhooks.webhooks-manager');
     }

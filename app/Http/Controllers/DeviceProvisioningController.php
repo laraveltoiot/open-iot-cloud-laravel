@@ -14,7 +14,7 @@ final class DeviceProvisioningController extends Controller
     {
         $secretKey = $request->query('key');
 
-        if (! $secretKey || ! is_string($secretKey)) {
+        if (! is_string($secretKey) || empty($secretKey)) {
             return response()->json([
                 'status' => 'error',
                 'message' => 'Missing or invalid secret key',

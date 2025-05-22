@@ -26,8 +26,8 @@ final class UpdateNodeStatusFromHeartbeat
             return;
         }
 
-        $node->last_seen_at = now();
-        $node->online = true;
+        $node->last_seen_at = now()->toDateTimeString();
+        $node->online = 1;
         $node->save();
 
         Log::info("Heartbeat processed for Node UUID: {$event->nodeUuid}");

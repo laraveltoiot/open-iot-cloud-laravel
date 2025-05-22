@@ -74,7 +74,7 @@
         ],
         "stan": [
             "composer ide",
-            "phpstan analyse --memory-limit=250M"
+            "phpstan analyse --memory-limit=512M"
         ],
         "pest": [
             "pest --compact --profile"

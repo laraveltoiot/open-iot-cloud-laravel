@@ -15,6 +15,7 @@ namespace App\Models{
 /**
  * 
  *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
  * @property int $id
  * @property string $node_uuid
  * @property string $name
@@ -28,7 +29,6 @@ namespace App\Models{
  * @property int|null $mqtt_port
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $users
  * @property-read int|null $users_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Node newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Node newQuery()

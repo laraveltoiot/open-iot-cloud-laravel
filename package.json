@@ -6,17 +6,17 @@
         "dev": "vite"
     },
     "dependencies": {
-        "@tailwindcss/vite": "^4.1.6",
+        "@tailwindcss/vite": "^4.1.7",
         "autoprefixer": "^10.4.21",
         "axios": "^1.9.0",
         "concurrently": "^9.1.2",
         "laravel-vite-plugin": "^1.2.0",
-        "tailwindcss": "^4.1.6",
+        "tailwindcss": "^4.1.7",
         "vite": "^6.3.5"
     },
     "optionalDependencies": {
-        "@rollup/rollup-linux-x64-gnu": "4.40.2",
-        "@tailwindcss/oxide-linux-x64-gnu": "^4.1.6",
-        "lightningcss-linux-x64-gnu": "^1.30.0"
+        "@rollup/rollup-linux-x64-gnu": "4.41.0",
+        "@tailwindcss/oxide-linux-x64-gnu": "^4.1.7",
+        "lightningcss-linux-x64-gnu": "^1.30.1"
     }
 }

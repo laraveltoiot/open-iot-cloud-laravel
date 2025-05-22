@@ -53,8 +53,8 @@ final class MqttStatusTrackerCommand extends Command
                 }
 
                 $online = mb_trim($message) === 'online';
-                $node->online = $online;
-                $node->last_seen_at = now();
+                $node->online = $online ? 1 : 0;
+                $node->last_seen_at = now()->toDateTimeString();
                 $node->save();
 
                 Log::info("MQTT: Node {$nodeUuid} is now ".($online ? 'ONLINE' : 'OFFLINE'));

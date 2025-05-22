@@ -26,7 +26,7 @@ final class DeviceBootstrapController extends Controller
         $secretKey = $validated['secret_key'];
 
         $node = Node::where('node_uuid', $nodeUuid)->first();
-        if (!$node) {
+        if (! $node) {
             Log::warning('Bootstrap: Node not found', ['node_uuid' => $nodeUuid]);
 
             return response()->json([
@@ -39,7 +39,7 @@ final class DeviceBootstrapController extends Controller
             ->where('secret_key', $secretKey)
             ->first();
 
-        if (!$mapping) {
+        if (! $mapping) {
             Log::warning('Bootstrap: Invalid credentials', [
                 'node_uuid' => $nodeUuid,
                 'provided_key' => $secretKey,
@@ -62,7 +62,7 @@ final class DeviceBootstrapController extends Controller
             ]);
 
             // Generate MQTT credentials if they don't exist
-            if (!$node->mqtt_username) {
+            if (! $node->mqtt_username) {
                 $node->mqtt_username = 'node-'.$node->node_uuid;
                 $node->mqtt_password = Str::uuid()->toString();
                 $node->mqtt_broker = config('mqtt.default_broker_host', 'mqtt.my-cloud.com');
@@ -85,7 +85,7 @@ final class DeviceBootstrapController extends Controller
                 'params_init' => "node/{$node->node_uuid}/params/local/init",
                 'params_publish' => "node/{$node->node_uuid}/params/local",
                 'params_subscribe' => "node/{$node->node_uuid}/params/remote",
-            ]
+            ],
         ]);
     }
 }
