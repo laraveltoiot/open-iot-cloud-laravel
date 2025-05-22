@@ -44,4 +44,4 @@ Route::post('/webhook/test', function (Request $request) {
 });
 
 // Zero-Touch Provisioning endpoint that combines pairing and credential retrieval
-Route::post('/devices/bootstrap', [DeviceBootstrapController::class, 'bootstrap']);
+Route::post('/devices/bootstrap', [DeviceBootstrapController::class, 'store']);

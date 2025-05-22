@@ -15,7 +15,7 @@ final class DeviceBootstrapController extends Controller
      * Bootstrap a device by handling both pairing and credential retrieval in a single request.
      * This implements a Zero-Touch Provisioning approach for IoT devices.
      */
-    public function bootstrap(Request $request): JsonResponse
+    public function store(Request $request): JsonResponse
     {
         $validated = $request->validate([
             'node_uuid' => ['required', 'uuid'],
