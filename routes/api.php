@@ -1,7 +1,6 @@
 <?php declare(strict_types=1);
 
 use App\Http\Controllers\DeviceBootstrapController;
-use App\Http\Controllers\DeviceProvisioningController;
 use App\Http\Controllers\HeartbeatController;
 use App\Http\Controllers\NodeController;
 use App\Http\Controllers\PairingController;
@@ -31,8 +30,6 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::post('/iot/heartbeat', [HeartbeatController::class, 'store']);
-
-Route::post('/iot/pairing', [PairingController::class, 'store']);
 
 Route::post('/webhook/test', function (Request $request) {
     Log::info('Received Webhook Test:', [
