@@ -17,6 +17,7 @@ final class DeviceBootstrapController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
+        // Validăm datele primite
         $validated = $request->validate([
             'node_uuid' => ['required', 'uuid'],
             'secret_key' => ['required', 'uuid'],
@@ -51,7 +52,6 @@ final class DeviceBootstrapController extends Controller
             ], 403);
         }
 
-        // If mapping exists but not confirmed, confirm it
         if ($mapping->status === 'requested') {
             $mapping->status = 'confirmed';
             $mapping->save();
@@ -60,28 +60,25 @@ final class DeviceBootstrapController extends Controller
                 'node_uuid' => $nodeUuid,
                 'user_id' => $mapping->user_id,
             ]);
-
-            // Generate MQTT credentials if they don't exist
-            if (! $node->mqtt_username) {
-                $node->mqtt_username = 'node-'.$node->node_uuid;
-                $node->mqtt_password = Str::uuid()->toString();
-                $node->mqtt_broker = config('mqtt-client.connections.hivemq.host');
-                $node->mqtt_port = config('mqtt-client.connections.hivemq.port');
-                $node->save();
-
-                Log::info('Bootstrap: MQTT credentials generated', ['node_uuid' => $nodeUuid]);
-            }
         }
+        $mqttUsername = 'node-' . $node->node_uuid;
+        $mqttPassword = (string) Str::uuid();
 
-        // Return all necessary configuration in one response
+        $broker = config('mqtt-client.connections.hivemq.host');
+        $port   = config('mqtt-client.connections.hivemq.port');
+
+        $authUsername = config('mqtt-client.connections.hivemq.connection_settings.auth.username');
+        $authPassword = config('mqtt-client.connections.hivemq.connection_settings.auth.password');
+
         return response()->json([
             'status' => 'success',
-            'broker' => config('mqtt-client.connections.hivemq.host'),
-            'port' => $node->mqtt_port,
-            'username' => $node->mqtt_username,
-            'password' => $node->mqtt_password,
-            'auth_username' => config('mqtt-client.connections.hivemq.connection_settings.auth.username'),
-            'auth_password' => config('mqtt-client.connections.hivemq.connection_settings.auth.password'),
+            'broker' => $broker,
+            'port' => $port,
+            'username' => $mqttUsername,
+            'password' => $mqttPassword,
+            'auth_username' => $authUsername,
+            'auth_password' => $authPassword,
+
             'topics' => [
                 'config_publish' => "node/{$node->node_uuid}/config",
                 'params_init' => "node/{$node->node_uuid}/params/local/init",
