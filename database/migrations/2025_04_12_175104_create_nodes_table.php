@@ -19,10 +19,6 @@ return new class extends Migration
             $table->boolean('online')->default(false);
             $table->timestamp('last_seen_at')->nullable();
             $table->string('fw_version')->nullable();
-            $table->string('mqtt_username')->nullable();
-            $table->string('mqtt_password')->nullable();
-            $table->string('mqtt_broker')->nullable()->default('mqtt.my-cloud.com');
-            $table->unsignedSmallInteger('mqtt_port')->nullable()->default(8883);
             $table->timestamps();
         });
     }
